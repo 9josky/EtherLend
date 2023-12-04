@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EtherLend</title>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <!-- css -->
+    <link href="../style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <aside class="bg-white">
+          <div class="top d-flex justify-content-between mt-4">
+                <div class="logo">
+                    <img src="../Assets/logo.svg" alt="brand logo">
+                    <h3>Ether<span class="logot">Lend</span></h3>
+                </div>
+                <div class="close" id="close-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                </div>
+                <div class="sidebar">
+                    <div class="top-header">
+                        <h3 class="ms-2">loan balance</h3>
+                        <h4 class="ms-3 mt-2">32,780,900.00 Usd</h4>
+                        <hr class="ms-2 me-2">
+                    </div>
+                    <div class="container">
+                        <div class="aside-loans">
+                            <small>Approved Loan</small>
+                            <small>16,700.00 USD</small>
+                        </div>
+                        <div class="aside-loans">
+                            <small>Pending Loan</small>
+                            <small>-------- USD</small>
+                        </div> 
+                    </div>
+                    <div class="d-grid gap-2 mt-4">
+                        <button class="btn">Pay Loan</button>
+                        <button class="btn button">Collect Loan</button>
+                      </div>
+                      <div class="border mt-5 p-3">
+                            <a href="#"  class="list-item pb-4 mt-4 d-flex"><img src="../Assets/dasboard.svg" class="me-2"><h2 class="h4">Dashboard</h2></a></li>
+                            <a href="loan.html" class="pb-4 d-flex"><img src="../Assets/donate.svg" class="me-2"><h2 class="h4">Loan</h2></a></li>
+                            <a href="loan-summary.html"  class="list-item mb-5 d-flex"><img src="../Assets/user.svg" class="me-2"><h2 class="h4">Profile</h2></a></li>
+                           </ul>
+                      </div>
+                      <div class="container mt-5 bg-white">
+                        <img src="../Assets/amico.svg" class="ms-2 lasti">
+                            <a href="#" class="d-flex pt-3"><img src="../Assets/logout.svg" class="me-3 last"><h2 class="h4">Logout</h2></a>
+                      </div>
+                     
+                </div>
+        </aside>
+        <main>
+            <div class="inputs mt-4">
+                <input type="search" placeholder="Search in dashboard...">
+            </div>
+            <div class="container welcome-text">
+                <h1>welcome !</h1>
+                <p class="fw-bold">Here is a summary of your account. Have fun</p>
+            </div>
+            <div class="coin-list d-flex">
+                <div class="coin col">
+                    <img src="../Assets/bitcoin.png">
+                    <div>
+                        <h3>&000</h3>
+                        <p>Bitcoin</p>
+                    </div>
+                </div>
+                <div class="coin col">
+                    <img src="../Assets/tether.png">
+                    <div>
+                        <h3>$000</h3>
+                        <p>Tether</p>
+                    </div>
+                </div>
+                <div class="coin col">
+                    <img src="../Assets/ethereum.png">
+                    <div>
+                        <h3>&000</h3>
+                        <p>Ethereum</p>
+                    </div>
+                </div>
+            
+            </div>
+            <div class="container">
+
+                <div class="">
+
+                </div>
+            </div>
+          </main>
+          <div class="right mt-4">
+              <div class="top d-flex justify-content-end">
+                <div class="menu">
+                  <a href="" id="menu-btn"><i class="fa-solid fa-bars"></i></a>
+                </div>
+                <div class="profile d-flex">
+                    <p><a href=""><img src="../Assets/profile.svg" class="me-3"></a></p>
+                    <p><a href=""><img src="../Assets/notification.svg"></a></p>
+                </div>
+              </div>
+              
+              <div class="loan shadow-lg">
+                <div class="">
+                  <h3 class="text-center">loan Details</h3>
+                  <h4 class="ms-3 mt-4">Loan Balance</h4>
+                  <h4 class="ms-3">32,780,900,00 USD</h4>
+                  <hr class="ms-2 me-2">
+                  <p class="ms-3 fw-bold">Coins Borrowed</p>
+              </div>
+              <div class="container">
+                  <div class="d-flex justify-content-between pb-0">
+                    <img src="../Assets/btc.png" class="image">
+                    <small class="fw-bold">Bitcoin <br><small class="small-text">Interest $20</small> </small>
+                    <small class="text-muted">  $36,081.00</small>
+                    <small class="text-danger"> deadline</small>
+                  </div>
+                  <div class="days">
+                    <p class="mt-2">Days Remaining Till Deadline</p>
+                    <p class="days text-center fw-bold">30<sub>Days</sub></p>
+                  </div> 
+              </div>
+              <div class="d-grid gap-2 mt-4">
+                <small>Extra fee 0f <span class="text-danger">$20.15</span> if loan is not paid on/Before deadline</small>
+                  <button class="btn">Pay Loan</button>
+                </div>
+              </div>
+              <!-- My Portfolio -->
+              <div class="bg-white mt-5 Portfolio">
+                <div class="mx-3">
+                    <div class="fw-bold ms-3 mt-3">My Portfolio
+            <div class="d-flex justify-content-between ms-2 me-2 pt-3 pb-3">
+                <p> <img src="../Assets/btc.png" class="image"></p>
+                 <small>Bitcoin<br> <small class="small-text">+2.6%</small></small>
+                 <small class="text-muted">  $36,081.00</small>
+                 <img src="../Assets/Vector3.svg">
+           </div>
+           <div class="d-flex justify-content-between ms-2 me-2 pt-3 pb-3">
+            <p> <img src="../Assets/ethereum.png" class="image"></p>
+             <small>Ethereum<br> <small class="small-text">+2.6%</small></small>
+             <small class="text-muted">  $36,081.00</small>
+             <img src="../Assets/Vector.svg">
+       </div>
+           <div class="d-flex justify-content-between ms-2 me-2 pt-3 pb-3">
+            <p> <img src="../Assets/icon.svg" class="image"></p>
+             <small>Cadarno<br> <small class="text-danger">-3.6%</small></small>
+             <small class="text-muted">  $36,081.00</small>
+             <img src="../Assets/Vector2.svg">
+           </div>
+    </div>
+  </div>
+  </div>
+    <div class="bg-white mt-5">
+      <div class=" mx-2">
+          <div class="ms-3 mt-3">AI Tips
+              <ul class="AI-link ms-auto pb-5">
+                  <li class="fw-bold">follow news and market analysis to understand what events may affect asset prices</li>
+                  <li class="fw-bold">pay back loan before due date, to</li>
+              </ul>
+ 
+ </div>
+             
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../index.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,31 @@
+.loan-body{
+    background: var(--aside-bg);
+    padding: 5px auto
+}
+
+.loan-body  input {
+    width: 223px;
+    padding: 10px; 
+    border-image: linear-gradient(to right, #55E2E9, #933FFE) ;
+    border-image-slice: 1;
+    background: white; 
+    margin-bottom: 10px;
+    
+}
+
+
+.notification{
+    display: flex;
+    flex-direction: column;
+}
+.profile{
+    display: block;
+    width: 60px;
+    margin: 20px auto 3px;
+}
+.assets-c{
+    color: var(--assets-color);
+    font-family: "Rubik";
+    font-weight: 600;
+    font-size: 14px
+}

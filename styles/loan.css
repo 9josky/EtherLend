@@ -1,0 +1,54 @@
+.cloan{
+    width: 350px
+}
+body{
+    background: #F5F5F5;
+    
+}
+main{
+    margin-left: 70px;
+}
+input:first-child{
+    width: 40%
+}
+
+.form-group {
+    position: relative;
+  }
+  
+  .form-group label {
+    position: absolute;
+    top: -10px;
+    left: 9px;
+    font-size: 14px;
+    background: white;
+    transition: 0.3s;
+   
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+  }
+  li{
+    list-style-type: none;
+   
+  }
+
+  li::before{
+    content: "";
+    margin: 10px;
+    display: inline-block;
+    width: 10px; 
+    height: 10px; 
+    background-color: green;
+    border-radius: 50%; 
+    
+
+}
+
+  
+ 
