@@ -3,6 +3,7 @@ import { Web5 } from "@web5/api";
 import Web3 from "web3";
 import ConnectAndLog from "@/common/web5";
 import { useRouter } from "next/router";
+// import { useAuth } from "@/common/AuthProvider";
 
 function Login() {
   const [userAddress, setUserAddress] = useState("");
@@ -12,25 +13,29 @@ function Login() {
   const [retrive, setRetrive] = useState([]);
   const [showLogin, setShowLogin] = useState(true);
   const router = useRouter();
+  // const { login } = useAuth();
 
   // console.log(retrive.data.username);
-  console.log({ retrive });
+  console.log({ userName });
   useEffect(() => {
     const initWeb5 = async () => {
       const { web5, did } = await Web5.connect();
       setWeb5(web5);
       setMyDid(did);
-      // const identityStore = Web5.getIdentityStore();
-      // identityStore.clear();
-
-      //   if (web5 && did) {
-      //     await configureProtocol(web5, did);
-      //     await fetchDings(web5, did);
-      //   }
     };
     initWeb5();
+  }, []); // Add dependencies if necessary
+
+  useEffect(() => {
     retriveUser();
-  }, []);
+  }, [web5, did]); // Add dependencies that cause state changes
+
+  useEffect(() => {
+    // Call createUser when userName and userAddress are set
+    if (!showLogin && userName && userAddress) {
+      createUser();
+    }
+  }, [userName, userAddress, showLogin]);
 
   const createUser = async () => {
     if (web5) {
@@ -55,9 +60,9 @@ function Login() {
       console.log("none");
     }
   };
-  if (!showLogin && userName && userAddress) {
-    createUser();
-  }
+  // if (!showLogin && userName && userAddress) {
+  //   createUser();
+  // }
 
   const retriveUser = async () => {
     // const deleteResult = await web5.dwn.records.deleteAll();
@@ -79,7 +84,6 @@ function Login() {
           const user = { record, data, id: record.id };
           console.log({ user });
           setRetrive(user);
-          // todos.value.push(todo);
         }
       } else {
         console.log("Response.records is not available or not an array");
@@ -102,52 +106,46 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Check if MetaMask is installed
-    if (window.ethereum) {
-      try {
-        // Request account access
-        const accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        const userAddress = accounts[0];
+    try {
+      // Assuming fetchData has already been called and retrive is updated
+      if (retrive) {
+        if (window.ethereum) {
+          // Rest of your MetaMask connection code
+          const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          const userAddress = accounts[0];
 
-        // Now you have the user's Ethereum address
-        console.log("Connected to MetaMask:", userAddress);
+          console.log("Connected to MetaMask:", userAddress);
 
-        // You can use web3 to interact with Ethereum
-        const web3 = new Web3(window.ethereum);
-        const balance = await web3.eth.getBalance(userAddress);
+          const web3 = new Web3(window.ethereum);
+          const balance = await web3.eth.getBalance(userAddress);
 
-        console.log("Account balance:", web3.utils.fromWei(balance, "ether"));
-
-        // Perform further actions with the user's address
-
-        // Assuming the retrieved data is an array
-        if (retrive.length > 0) {
-          const userToLogin = retrive[0];
+          console.log(
+            "Account balances:",
+            web3.utils.fromWei(balance, "ether")
+          );
 
           // Check if the username and wallet match the retrieved data
           if (
-            userToLogin.data.username === userName &&
-            userToLogin.data.wallet === userAddress
+            retrive.data.username === userName &&
+            retrive.data.wallet === userAddress
           ) {
-            // Redirect to the dashboard
             console.log("Before navigation");
-            router.push("/Dashboard");
+            // login(retrive.data);
+            await router.push("/Dashboard");
             console.log("After navigation");
           } else {
-            // Handle the case where the username or wallet doesn't match
-            console.log("Invalid username or wallet");
+            console.log("Invalid username or wallet. User data:", retrive.data);
           }
         } else {
-          // Handle the case where no user data is retrieved
-          console.log("No user data found");
+          console.error("MetaMask is not installed");
         }
-      } catch (error) {
-        console.error("Error connecting to MetaMask:", error);
+      } else {
+        console.log("No user data found");
       }
-    } else {
-      console.error("MetaMask is not installed");
+    } catch (error) {
+      console.error("Error during login:", error);
     }
   };
 
@@ -226,11 +224,7 @@ function Login() {
                     />
                     <h6 className="text-muted">Have an account?</h6>
                   </div>
-                  <button
-                    type="submit"
-                    className="btn"
-                    onClick={connectToMetaMask}
-                  >
+                  <button type="submit" className="btn">
                     Login
                   </button>
                 </form>
