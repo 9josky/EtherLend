@@ -1,6 +1,6 @@
 import React from "react";
 
-function Dashboard() {
+function Dashboard(){
   return (
     <div className="wrapper">
       <aside className="bg-white">
@@ -99,103 +99,79 @@ function Dashboard() {
         </div>
       </main>
       <div className="right mt-4">
-        <div className="top d-flex justify-content-end">
-          <div className="menu">
-            <a href="" id="menu-btn">
-              <i className="fa-solid fa-bars"></i>
-            </a>
-          </div>
-          <div className="profile d-flex">
-            <p>
-              <a href="">
-                <img
-                  src="../Assets/profile.svg"
-                  className="me-3"
-                  alt="Profile"
-                />
-              </a>
-            </p>
-            <p>
-              <a href="">
-                <img src="../Assets/notification.svg" alt="Notification" />
-              </a>
-            </p>
-          </div>
-        </div>
-        <div className="loan-body">
-          <div>
-            <p className="pt-2 text-center">Trader Profile</p>
-            <img
-              src="../Assets/KimSeonHo.png"
-              className="profile"
-              alt="Trader Profile"
-            />
-            <p className="text-center fw-bold">Han Ji Pyeong</p>
-            <input
-              type="text"
-              placeholder="change username"
-              className="form-control ms-5"
-            />
-            <input
-              type="text"
-              placeholder="ID : 6444564795645346"
-              className="form-control ms-5"
-            />
-          </div>
-          <div className="d-flex button justify-content-between my-5">
-            <p className="ps-3 my-3">Loan Status:</p>
-            <p className="pe-3 my-3">Active</p>
-          </div>
-          <div className="ms-5 me-5">
-            <p className="fw-bold">Assets</p>
-            <div className="d-flex justify-content-between">
-              <p className="assets-c">Bitcoin</p>
-              <p>
-                23.5 <span className="assets-c">BTC</span>
-              </p>
-            </div>
-            <div className="d-flex justify-content-between">
-              <p className="assets-c">Ethereum</p>
-              <p>
-                190.45 <span className="assets-c">ETH</span>
-              </p>
-            </div>
-            <div className="d-flex justify-content-between">
-              <p className="assets-c">Doge</p>
-              <p>
-                239,500<span className="assets-c"> DOGE</span>
-              </p>
-            </div>
-            <div className="d-flex justify-content-between">
-              <p className="assets-c">Ripple</p>
-              <p>
-                65,100 <span className="assets-c">XRP</span>
-              </p>
-            </div>
-          </div>
-          <div className="ms-5 me-5 py-5">
-            <p className="fw-bold">Notifications</p>
-            <div className="notification">
-              <div className="pb-3">
-                <small className="fw-bold">Loan will be due in 30days</small>
-                <small className="text-muted">59minutes ago</small>
+              <div className="top d-flex justify-content-end">
+                <div className="menu">
+                  <a href="" id="menu-btn"><i class="fa-solid fa-bars"></i></a>
+                </div>
+                <div className="profile d-flex">
+                    <p><a href=""><img src="../Assets/profile.svg" class="me-3"/></a></p>
+                    <p><a href=""><img src="../Assets/notification.svg"/></a></p>
+                </div>
               </div>
-              <div className="pb-3">
-                <small className="fw-bold">
-                  Interest of 1.5usd added to outstanding loan
-                </small>
-                <small className="text-muted">5days ago</small>
+              
+              <div className="loan shadow-lg">
+                <div className="">
+                  <h3 className="text-center">loan Details</h3>
+                  <h4 className="ms-3 mt-4">Loan Balance</h4>
+                  <h4 className="ms-3">32,780,900,00 USD</h4>
+                  <hr className="ms-2 me-2"/>
+                  <p className="ms-3 fw-bold">Coins Borrowed</p>
               </div>
-              <div className="pb-3">
-                <small className="fw-bold">Live market Updated</small>
-                <small className="text-muted">30minutes ago</small>
+              <div className="container">
+                  <div className="d-flex justify-content-between pb-0">
+                    <img src="../Assets/btc.png" className="image"/>
+                    <small className="fw-bold">Bitcoin <br/><small className="small-text">Interest $20</small> </small>
+                    <small className="text-muted">  $36,081.00</small>
+                    <small className="text-danger"> deadline</small>
+                  </div>
+                  <div className="days">
+                    <p className="mt-2">Days Remaining Till Deadline</p>
+                    <p className="days text-center fw-bold">30<sub>Days</sub></p>
+                  </div> 
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              <div className="d-grid gap-2 mt-4">
+                <small>Extra fee 0f <span className="text-danger">$20.15</span> if loan is not paid on/Before deadline</small>
+                  <button className="btn">Pay Loan</button>
+                </div>
+              </div>
+              <div className="bg-white mt-5 Portfolio">
+                <div className="mx-3">
+                    <div className="fw-bold ms-3 mt-3">My Portfolio
+            <div class="d-flex justify-content-between ms-2 me-2 pt-3 pb-3">
+                <p> <img src="../Assets/btc.png" className="image"/></p>
+                 <small>Bitcoin<br/> <small className="small-text">+2.6%</small></small>
+                 <small className="text-muted">  $36,081.00</small>
+                 <img src="../Assets/Vector3.svg"/>
+           </div>
+           <div class="d-flex justify-content-between ms-2 me-2 pt-3 pb-3">
+            <p> <img src="../Assets/ethereum.png" className="image"/></p>
+             <small>Ethereum<br/> <small className="small-text">+2.6%</small></small>
+             <small class="text-muted">  $36,081.00</small>
+             <img src="../Assets/Vector.svg"/>
+       </div>
+           <div className="d-flex justify-content-between ms-2 me-2 pt-3 pb-3">
+            <p> <img src="../Assets/icon.svg" className="image"/></p>
+             <small>Cadarno<br/> <small class="text-danger">-3.6%</small></small>
+             <small class="text-muted">  $36,081.00</small>
+             <img src="../Assets/Vector2.svg"/>
+           </div>
     </div>
-  );
+  </div>
+  </div>
+    <div className="bg-white mt-5">
+      <div className=" mx-2">
+          <div className="ms-3 mt-3">AI Tips
+              <ul className="AI-link ms-auto pb-5">
+                  <li className="fw-bold">follow news and market analysis to understand what events may affect asset prices</li>
+                  <li className="fw-bold">pay back loan before due date, to</li>
+              </ul>
+              </div>
+            </div>
+            </div>
+            </div>
+            </div>
+    );
 }
 
 export default Dashboard;
+
