@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 // import { Web5 } from "@web5/api";
-import { Web5 } from "@web5/api";
 import Web3 from "web3";
 import ConnectAndLog from "@/component/web5";
 import { useRouter } from "next/router";
 import jwt from "jsonwebtoken";
 import { useWeb5 } from "@/component/web5";
 
-// import jwt from "jsonwebtoken-promisified";
 console.log({ jwt });
-// import { useAuth } from "@/common/AuthProvider";
 function Login() {
   const [userAddress, setUserAddress] = useState("");
   const { web5, did } = useWeb5();
