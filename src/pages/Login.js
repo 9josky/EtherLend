@@ -211,10 +211,13 @@ function Login() {
     <>
       {showLogin ? (
         <div className="login shadow-lg signup">
-          <div className="containers d-flex">
-            <div className="right">
+          <div
+            className="containers d-flex"
+            style={{ justifyContent: "center" }}
+          >
+            {/* <div className="right">
               <img src="/Assets/Frame.png" alt="Right Image" />
-            </div>
+            </div> */}
             <div className="left">
               <div className="log-in">
                 <div className="close" id="close-btn">
@@ -258,9 +261,14 @@ function Login() {
       ) : (
         <div className="login shadow-lg">
           <div className="containers d-flex">
-            <div className="right">
-              <img src="/Assets/Frame.png" alt="Right Image" />
-            </div>
+            {/* <div className="right">
+              <img
+                src="/Assets/Frame.png"
+                alt="Right Image"
+                width="50px"
+                height="50px"
+              />
+            </div> */}
             <div className="left">
               <div className="log-in">
                 <div className="close" id="close-btn">
