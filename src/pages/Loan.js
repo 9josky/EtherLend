@@ -15,6 +15,14 @@ function Loan() {
     initWeb5();
   }, []);
 
+  const handleLogout = () => {
+    // Remove the auth token from local storage
+    localStorage.removeItem("authToken");
+
+    // Redirect the user to the login page
+    router.push("/Login");
+  };
+
   // Predefined list of coins
   const coinOptions = ["USDT", "BTC", "ETH"];
 
@@ -139,6 +147,7 @@ function Loan() {
               // href="index.html"
               className="list-item pb-4 mt-4 d-flex"
               onClick={() => goToPage("/Dashboard")}
+              style={{ cursor: "pointer" }}
             >
               <img src="../Assets/dasboard.svg" className="me-2" />
               <h2 className="h4">Dashboard</h2>
@@ -147,6 +156,7 @@ function Loan() {
               // href="loan.html"
               className="pb-4 d-flex"
               onClick={() => goToPage("/Loan")}
+              style={{ cursor: "pointer" }}
             >
               <img src="../Assets/donate.svg" className="me-2" />
               <h2 className="h4">Loan</h2>
@@ -155,6 +165,7 @@ function Loan() {
               // href="loan-summary.html"
               className="list-item mb-5 d-flex"
               onClick={() => goToPage("/Profile")}
+              style={{ cursor: "pointer" }}
             >
               <img src="../Assets/user.svg" className="me-2" />
               <h2 className="h4">Profile</h2>
@@ -162,7 +173,11 @@ function Loan() {
           </div>
           <div className="container mt-5 bg-white">
             <img src="../Assets/amico.svg" className="ms-2 lasti" />
-            <a href="#" className="d-flex pt-3">
+            <a
+              className="d-flex pt-3"
+              onClick={handleLogout}
+              style={{ cursor: "pointer" }}
+            >
               <img src="../Assets/logout.svg" className="me-3 last" />
               <h2 className="h4">Logout</h2>
             </a>

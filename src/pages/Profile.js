@@ -19,6 +19,14 @@ function Profile() {
     retriveUser();
   }, [web5, did]);
 
+  const handleLogout = () => {
+    // Remove the auth token from local storage
+    localStorage.removeItem("authToken");
+
+    // Redirect the user to the login page
+    router.push("/Login");
+  };
+
   const retriveUser = async () => {
     // const deleteResult = await web5.dwn.records.deleteAll();
 
@@ -88,6 +96,7 @@ function Profile() {
               // href="index.html"
               className="list-item pb-4 mt-4 d-flex"
               onClick={() => goToPage("/Dashboard")}
+              style={{ cursor: "pointer" }}
             >
               <img
                 src="../Assets/dasboard.svg"
@@ -100,6 +109,7 @@ function Profile() {
               // href="loan.html"
               className="pb-4 d-flex"
               onClick={() => goToPage("/Loan")}
+              style={{ cursor: "pointer" }}
             >
               <img src="../Assets/donate.svg" className="me-2" alt="Loan" />
               <h2 className="h4">Loan</h2>
@@ -108,6 +118,7 @@ function Profile() {
               // href="loan-summary.html"
               className="list-item mb-5 d-flex"
               onClick={() => goToPage("/Profile")}
+              style={{ cursor: "pointer" }}
             >
               <img src="../Assets/user.svg" className="me-2" alt="Profile" />
               <h2 className="h4">Profile</h2>
@@ -115,7 +126,11 @@ function Profile() {
           </div>
           <div className="container mt-5 bg-white">
             <img src="../Assets/amico.svg" className="ms-2 lasti" alt="Amico" />
-            <a href="#" className="d-flex pt-3">
+            <a
+              className="d-flex pt-3"
+              onClick={handleLogout}
+              style={{ cursor: "pointer" }}
+            >
               <img
                 src="../Assets/logout.svg"
                 className="me-3 last"
