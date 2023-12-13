@@ -260,7 +260,10 @@ function Login() {
         </div>
       ) : (
         <div className="login shadow-lg">
-          <div className="containers d-flex">
+          <div
+            className="containers d-flex"
+            style={{ justifyContent: "center" }}
+          >
             {/* <div className="right">
               <img
                 src="/Assets/Frame.png"
