@@ -1,7 +1,7 @@
 // pages/_app.js
 import "../styles/globals.css";
-import "../styles/loan-summary.css"
-import "../styles/loan.css"
+import "../styles/loan-summary.css";
+// import "../styles/loan.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { Web5Provider } from "@/component/web5";
