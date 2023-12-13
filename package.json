@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@web5/api": "^0.8.1",
+    "@web5/api": "^0.8.3",
+    "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
+    "chartjs": "^0.3.24",
     "crypto-browserify": "^3.12.0",
+    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken-promisified": "^1.0.3",
     "next": "^14.0.4",
     "node-polyfill-webpack-plugin": "^3.0.0",
     "react": "^18.2.0",

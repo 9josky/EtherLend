@@ -1,30 +1,52 @@
 import React, { useState, useEffect } from "react";
+// import { Web5 } from "@web5/api";
 import { Web5 } from "@web5/api";
 import Web3 from "web3";
-import ConnectAndLog from "@/common/web5";
+import ConnectAndLog from "@/component/web5";
 import { useRouter } from "next/router";
-// import { useAuth } from "@/common/AuthProvider";
+import jwt from "jsonwebtoken";
+import { useWeb5 } from "@/component/web5";
 
+// import jwt from "jsonwebtoken-promisified";
+console.log({ jwt });
+// import { useAuth } from "@/common/AuthProvider";
 function Login() {
   const [userAddress, setUserAddress] = useState("");
-  const [web5, setWeb5] = useState(null);
-  const [did, setMyDid] = useState(null);
+  const { web5, did } = useWeb5();
+  // const [web5, setWeb5] = useState(null);
+  // const [did, setMyDid] = useState(null);
   const [userName, setUserName] = useState("");
   const [retrive, setRetrive] = useState([]);
   const [showLogin, setShowLogin] = useState(true);
   const router = useRouter();
+  const [secretKey, setSecretKey] = useState("");
   // const { login } = useAuth();
 
   // console.log(retrive.data.username);
-  console.log({ userName });
+  console.log({ useWeb5 });
+  // useEffect(() => {
+  //   const initWeb5 = async () => {
+  //     try {
+  //       const { web5, did } = await Web5.connect();
+  //       setWeb5(web5);
+  //       setMyDid(did);
+  //     } catch (error) {
+  //       console.error("Error initializing Web5:", error);
+  //     }
+  //   };
+  //   initWeb5();
+  // }, []);
+  // Add dependencies if necessary
+
   useEffect(() => {
-    const initWeb5 = async () => {
-      const { web5, did } = await Web5.connect();
-      setWeb5(web5);
-      setMyDid(did);
+    const generateRandomString = () => {
+      return Math.random().toString(36).substring(2);
     };
-    initWeb5();
-  }, []); // Add dependencies if necessary
+
+    // Use the generated random string as the secret key
+    const SECRET_KEY = generateRandomString();
+    setSecretKey(SECRET_KEY);
+  }, []);
 
   useEffect(() => {
     retriveUser();
@@ -60,9 +82,9 @@ function Login() {
       console.log("none");
     }
   };
-  // if (!showLogin && userName && userAddress) {
-  //   createUser();
-  // }
+  if (!showLogin && userName && userAddress) {
+    createUser();
+  }
 
   const retriveUser = async () => {
     // const deleteResult = await web5.dwn.records.deleteAll();
@@ -131,6 +153,16 @@ function Login() {
             retrive.data.username === userName &&
             retrive.data.wallet === userAddress
           ) {
+            const token = jwt.sign(
+              { username: userName, wallet: userAddress },
+              secretKey,
+              {
+                expiresIn: "2w", // Two weeks
+              }
+            );
+
+            // Save the authentication token in local storage
+            localStorage.setItem("authToken", token);
             console.log("Before navigation");
             // login(retrive.data);
             await router.push("/Dashboard");

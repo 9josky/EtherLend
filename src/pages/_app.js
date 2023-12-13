@@ -2,8 +2,7 @@
 import "../styles/globals.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-// import { AuthProvider, useAuth } from "@/common/AuthProvider";
-
+import { Web5Provider } from "@/component/web5";
 function App({ Component, pageProps }) {
   // const { user } = useAuth();
   // const router = useRouter();
@@ -24,8 +23,8 @@ function App({ Component, pageProps }) {
 
 export default function AppWithAuthProvider(props) {
   return (
-    // <AuthProvider>
-    <App {...props} />
-    // </AuthProvider>
+    <Web5Provider>
+      <App {...props} />
+    </Web5Provider>
   );
 }

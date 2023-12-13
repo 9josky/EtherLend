@@ -1,0 +1,45 @@
+.coinTableWrapper {
+  width: 600px;
+  height: 600px;
+  overflow-x: auto;
+}
+
+.coinTable {
+  margin-top: 32px;
+  margin-bottom: 80px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  /* color: #fff; */
+}
+
+table th,
+table td {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+table th {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.coinRow {
+  font-size: 14px;
+}
+
+.coinImage {
+  width: 30px;
+  height: 30px;
+}
+
+.loss {
+  color: #f00606;
+}
+
+.gain {
+  color: #11d811;
+}
