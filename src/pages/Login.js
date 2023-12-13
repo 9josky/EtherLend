@@ -13,30 +13,14 @@ console.log({ jwt });
 function Login() {
   const [userAddress, setUserAddress] = useState("");
   const { web5, did } = useWeb5();
-  // const [web5, setWeb5] = useState(null);
-  // const [did, setMyDid] = useState(null);
+
   const [userName, setUserName] = useState("");
   const [retrive, setRetrive] = useState([]);
   const [showLogin, setShowLogin] = useState(true);
   const router = useRouter();
   const [secretKey, setSecretKey] = useState("");
-  // const { login } = useAuth();
 
-  // console.log(retrive.data.username);
   console.log({ useWeb5 });
-  // useEffect(() => {
-  //   const initWeb5 = async () => {
-  //     try {
-  //       const { web5, did } = await Web5.connect();
-  //       setWeb5(web5);
-  //       setMyDid(did);
-  //     } catch (error) {
-  //       console.error("Error initializing Web5:", error);
-  //     }
-  //   };
-  //   initWeb5();
-  // }, []);
-  // Add dependencies if necessary
 
   useEffect(() => {
     const generateRandomString = () => {

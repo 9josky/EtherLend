@@ -1,8 +1,101 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useWeb5 } from "@/component/web5";
 // import styles from "../styles/loan.css";
 
 function Loan() {
+  const { web5, did } = useWeb5();
+
+  useEffect(() => {
+    const initWeb5 = async () => {
+      if (web5 && did) {
+        await configureProtocol(web5, did);
+      }
+    };
+    initWeb5();
+  }, []);
+
+  // Predefined list of coins
+  const coinOptions = ["USDT", "BTC", "ETH"];
+
+  // Predefined list of loan terms
+  const loanTerms = ["15 days", "30 days", "60 days"];
+
+  const createProtocolDefinition = () => {
+    const protocolDefinition = {
+      protocol: "https://etherlend-protocol.com",
+      types: {
+        loanRequest: {
+          schema: "https://etherlend-protocol.com/schemas/loan-request",
+          dataFormats: ["application/json"],
+        },
+        loanResponse: {
+          schema: "https://etherlend-protocol.com/schemas/loan-response",
+          dataFormats: ["application/json"],
+        },
+      },
+      structure: {
+        loanRequest: {
+          $actions: [
+            {
+              who: "anyone",
+              can: "write",
+            },
+          ],
+          loanResponse: {
+            $actions: [
+              {
+                who: "recipient",
+                of: "loanRequest",
+                can: "write",
+              },
+            ],
+          },
+        },
+      },
+      published: true,
+    };
+    return protocolDefinition;
+  };
+
+  const queryForProtocol = async (web5) => {
+    return await web5.dwn.protocols.query({
+      message: {
+        filter: {
+          protocol: "https://etherlend-protocol.com",
+        },
+      },
+    });
+  };
+
+  const installProtocolLocally = async (web5, protocolDefinition) => {
+    return await web5.dwn.protocols.configure({
+      message: {
+        definition: protocolDefinition,
+      },
+    });
+  };
+
+  const configureProtocol = async (web5, did) => {
+    const protocolDefinition = createProtocolDefinition();
+    const { protocols: localProtocol, status: localProtocolStatus } =
+      await queryForProtocol(web5);
+    console.log({ localProtocol, localProtocolStatus });
+    if (localProtocolStatus.code !== 200 || localProtocol.length === 0) {
+      const { protocol, status } = await installProtocolLocally(
+        web5,
+        protocolDefinition
+      );
+      console.log("Protocol installed locally", protocol, status);
+      const { status: configureRemoteStatus } = await protocol.send(did);
+      console.log(
+        "Did the protocol install on the remote DWN?",
+        configureRemoteStatus
+      );
+    } else {
+      console.log("Protocol already installed");
+    }
+  };
   const router = useRouter();
   function goToPage(link) {
     router.push(link);
@@ -108,7 +201,13 @@ function Loan() {
           </div>
           <div className="form-group">
             <label htmlFor="type-of-coin">Coin</label>
-            <input type="text" className="form-control" placeholder="Bitcoin" />
+            <select className="form-control" id="type-of-coin">
+              {coinOptions.map((coin, index) => (
+                <option key={index} value={coin}>
+                  {coin}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="form-group">
             <label htmlFor="amount">Amount</label>
@@ -121,21 +220,23 @@ function Loan() {
           </div>
           <div className="form-group">
             <label htmlFor="collateral">Collateral</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="input collateral"
-              aria-label="collateral"
-            />
+            <select className="form-control" id="collateral">
+              {coinOptions.map((coin, index) => (
+                <option key={index} value={coin}>
+                  {coin}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="form-group">
             <label htmlFor="loan-term">Loan Term</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="input collateral"
-              aria-label="loan-term"
-            />
+            <select className="form-control" id="loan-term">
+              {loanTerms.map((term, index) => (
+                <option key={index} value={term}>
+                  {term}
+                </option>
+              ))}
+            </select>
           </div>
         </form>
         <div className="col-12">
