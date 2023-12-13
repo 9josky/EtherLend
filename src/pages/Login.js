@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 // import { Web5 } from "@web5/api";
 import { Web5 } from "@web5/api";
 import Web3 from "web3";
@@ -223,9 +224,9 @@ function Login() {
                   <i className="fa-solid fa-xmark"></i>
                 </div>
                 <div className="logo text-center">
-                  <img sr="/Assets/logo.svg" alt="brand logo" />
+                  <img src="/Assets/logo.svg" alt="brand logo" />
                   <h3 className="text-center">
-                    ETHER<span className="logo-text">LEND</span>
+                    ETHER<span className="logot">LEND</span>
                   </h3>
                 </div>
                 <form onSubmit={handleLogin}>
@@ -246,7 +247,7 @@ function Login() {
                 </form>
                 <div className="form-bottom pt-5 mt-5 text-end pb-5 me-5">
                   <a
-                    className="sign-up"
+                    className="sign-up btn"
                     onClick={toggleForm}
                     style={{ cursor: "pointer" }}
                   >
@@ -269,9 +270,9 @@ function Login() {
                   <i className="fa-solid fa-xmark"></i>
                 </div>
                 <div className="logo text-center mt-5">
-                  <img sr="/Assets/logo.svg" alt="brand logo" />
+                  <img src="/Assets/logo.svg" alt="brand logo" />
                   <h3 className="text-center">
-                    ETHER<span className="logo-text">LEND</span>
+                    ETHER<span className="logot">LEND</span>
                   </h3>
                 </div>
                 <form>
@@ -296,7 +297,7 @@ function Login() {
                 </form>
                 <div className="form-bottom pt-5 mt-5 text-end pb-5 me-5">
                   <a
-                    className="sign-up"
+                    className="sign-up btn"
                     onClick={() => toggleForm(true)}
                     style={{ cursor: "pointer" }}
                   >
