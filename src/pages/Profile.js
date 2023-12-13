@@ -1,6 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
+import CoinPrice from "@/component/CoinPrice";
+import { useWeb5 } from "@/component/web5";
 
 function Profile() {
+  const { web5, did } = useWeb5();
+  const [userName, setUserName] = useState("");
+  const [userAddress, setUserAddress] = useState("");
+  const [retrive, setRetrive] = useState([]);
+  console.log({ retrive });
+  const router = useRouter();
+  function goToPage(link) {
+    router.push(link);
+  }
+
+  useEffect(() => {
+    retriveUser();
+  }, [web5, did]);
+
+  const retriveUser = async () => {
+    // const deleteResult = await web5.dwn.records.deleteAll();
+
+    if (web5 && did) {
+      let response = await web5.dwn.records.query({
+        // from: did,
+        message: {
+          filter: {
+            schema: "http://some-schema-registry.org/lend",
+            dataFormat: "application/json",
+          },
+        },
+      });
+      console.log({ response });
+      if (response.records && Array.isArray(response.records)) {
+        for (let record of response.records) {
+          const data = await record.data.json();
+          const user = { record, data, id: record.id };
+          console.log({ user });
+          setRetrive(user);
+          setUserName(data.username);
+          setUserAddress(data.wallet);
+        }
+      } else {
+        console.log("Response.records is not available or not an array");
+      }
+    } else {
+      console.error("web5 or did is not initialized");
+    }
+  };
   return (
     <div className="wrapper">
       <aside className="bg-white">
@@ -36,7 +84,11 @@ function Profile() {
             <button className="btn button">Collect Loan</button>
           </div>
           <div className="border mt-5 p-3">
-            <a href="index.html" className="list-item pb-4 mt-4 d-flex">
+            <a
+              // href="index.html"
+              className="list-item pb-4 mt-4 d-flex"
+              onClick={() => goToPage("/Dashboard")}
+            >
               <img
                 src="../Assets/dasboard.svg"
                 className="me-2"
@@ -44,11 +96,19 @@ function Profile() {
               />
               <h2 className="h4">Dashboard</h2>
             </a>
-            <a href="loan.html" className="pb-4 d-flex">
+            <a
+              // href="loan.html"
+              className="pb-4 d-flex"
+              onClick={() => goToPage("/Loan")}
+            >
               <img src="../Assets/donate.svg" className="me-2" alt="Loan" />
               <h2 className="h4">Loan</h2>
             </a>
-            <a href="loan-summary.html" className="list-item mb-5 d-flex">
+            <a
+              // href="loan-summary.html"
+              className="list-item mb-5 d-flex"
+              onClick={() => goToPage("/Profile")}
+            >
               <img src="../Assets/user.svg" className="me-2" alt="Profile" />
               <h2 className="h4">Profile</h2>
             </a>
@@ -75,7 +135,8 @@ function Profile() {
           <p className="fw-bold">Here is a summary of your account. Have fun</p>
         </div>
         <div className="coin-list d-flex">
-          <div className="coin col bars">
+          <CoinPrice />
+          {/* <div className="coin col bars">
             <img src="../Assets/Bars1.svg" alt="Bars" />
             <div>
               <p>Active Loan</p>
@@ -95,7 +156,7 @@ function Profile() {
               <p>Total Interest Balance</p>
               <p>&000</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </main>
       <div className="right mt-4">
@@ -130,7 +191,7 @@ function Profile() {
               className="profile"
               alt="Trader Profile"
             />
-            <p className="text-center fw-bold">Han Ji Pyeong</p>
+            <p className="text-center fw-bold">{userName}</p>
             <input
               type="text"
               placeholder="change username"
@@ -138,7 +199,7 @@ function Profile() {
             />
             <input
               type="text"
-              placeholder="ID : 6444564795645346"
+              placeholder={`ID: ${userAddress}`}
               className="form-control ms-5"
             />
           </div>

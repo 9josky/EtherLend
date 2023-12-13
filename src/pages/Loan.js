@@ -1,7 +1,12 @@
 import React from "react";
+import { useRouter } from "next/router";
 // import styles from "../styles/loan.css";
 
 function Loan() {
+  const router = useRouter();
+  function goToPage(link) {
+    router.push(link);
+  }
   return (
     <div className="wrapper">
       <div className="bg-white">
@@ -37,15 +42,27 @@ function Loan() {
             <button className="btn button">Collect Loan</button>
           </div>
           <div className="border mt-5 p-3">
-            <a href="index.html" className="list-item pb-4 mt-4 d-flex">
+            <a
+              // href="index.html"
+              className="list-item pb-4 mt-4 d-flex"
+              onClick={() => goToPage("/Dashboard")}
+            >
               <img src="../Assets/dasboard.svg" className="me-2" />
               <h2 className="h4">Dashboard</h2>
             </a>
-            <a href="loan.html" className="pb-4 d-flex">
+            <a
+              // href="loan.html"
+              className="pb-4 d-flex"
+              onClick={() => goToPage("/Loan")}
+            >
               <img src="../Assets/donate.svg" className="me-2" />
               <h2 className="h4">Loan</h2>
             </a>
-            <a href="loan-summary.html" className="list-item mb-5 d-flex">
+            <a
+              // href="loan-summary.html"
+              className="list-item mb-5 d-flex"
+              onClick={() => goToPage("/Profile")}
+            >
               <img src="../Assets/user.svg" className="me-2" />
               <h2 className="h4">Profile</h2>
             </a>
